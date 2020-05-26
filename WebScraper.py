@@ -1,4 +1,7 @@
-import requests, bs4, time
+import bs4
+import time
+
+from pip._vendor import requests
 
 def ReadDataFromContactCars(carmake, carmodel):
     pageNo = 1 
@@ -29,8 +32,6 @@ def ReadDataFromContactCars(carmake, carmodel):
         pageNo += 1
     
     return arrayOfCars
-
-print(ReadDataFromContactCars(6,19))
 ### TODO ##
 # Since ads are sorted by date of creation, to minimize unnecessary collection of data
 # we can compare the carid in the for loop to the latest car id stored in our database

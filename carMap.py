@@ -28,6 +28,3 @@ def importjson(infilename):
       data =  json.load(infile)
       print(data)
     return
-
-exportjson(dict_CarMakes)
-importjson("carMakesDict.json")

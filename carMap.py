@@ -1,5 +1,7 @@
 import codecs
 from html.parser import HTMLParser
+
+import csv
 from bs4 import BeautifulSoup
 
 # get content from html carMakes
@@ -8,12 +10,23 @@ parsed = BeautifulSoup(file_CarMakes, 'html.parser')
 # print(parsed.find_all('option'))
 
 # initializing variables for loop and dictionary
-i = 1
 dict_CarMakes = {}
-
+i = 0
 for single in parsed.findAll('option'):
+    if i == 0:
+        i += 1
+        continue
     # dict_CarMakes.update({single.get('value'): single.get_text()})
     dict_CarMakes[single.get('value')] = single.get_text()
-    i += 1
 
 print(dict_CarMakes)
+
+
+def exportcsv(dict_CarMakes):
+    writer = csv.writer(open("CarMakesDict", "w", encoding='utf-8'))
+    for key, value in dict_CarMakes.items():
+        writer.writerow([key, value])
+    return
+
+
+exportcsv(dict_CarMakes)
